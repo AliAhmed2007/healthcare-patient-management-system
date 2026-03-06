@@ -1,0 +1,74 @@
+"use client";
+import { appointmentSchema } from "@/lib/schemas";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import z from "zod";
+
+import { FieldGroup } from "@/components/ui/field";
+import InputField, { FieldTypesEnum } from "../InputField";
+import SubmitButton from "../SubmitButton";
+import { useRouter } from "next/navigation";
+
+function PatientForm() {
+  const router = useRouter();
+
+  const form = useForm<z.infer<typeof appointmentSchema>>({
+    resolver: zodResolver(appointmentSchema),
+    defaultValues: {
+      fullName: "",
+      email: "",
+      phone: "",
+    },
+    mode: "onChange",
+  });
+
+  function onSubmit(userData: z.infer<typeof appointmentSchema>) {
+    try {
+      // const user = createUser(userData);
+      // if (user) router.push(`patients/${user.id}/register`);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  return (
+    <form id="form-rhf-input" onSubmit={form.handleSubmit(onSubmit)}>
+      <section className="mb-12 space-y-4">
+        <h1 className="header">Hi There 👋</h1>
+        <p className="text-dark-700">Schedule your first appointment</p>
+      </section>
+      <FieldGroup>
+        <InputField
+          fieldType={FieldTypesEnum.INPUT}
+          formControl={form.control}
+          label="Email"
+          name="email"
+          placeholder="Enter your Email"
+          iconSrc="/assets/icons/email.svg"
+          iconAlt="Email"
+        />
+        <InputField
+          fieldType={FieldTypesEnum.INPUT}
+          formControl={form.control}
+          label="Full Name"
+          name="fullName"
+          placeholder="Enter your Full Name"
+          iconSrc="/assets/icons/user.svg"
+          iconAlt="User"
+        />
+        <InputField
+          fieldType={FieldTypesEnum.PHONE_INPUT}
+          formControl={form.control}
+          label="Phone Number"
+          name="phone"
+          placeholder="+20 0123456789"
+        />
+      </FieldGroup>
+      <SubmitButton isLoading={form.formState.isSubmitting}>
+        Get Started
+      </SubmitButton>
+    </form>
+  );
+}
+
+export default PatientForm;

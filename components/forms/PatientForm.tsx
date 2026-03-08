@@ -8,6 +8,7 @@ import { FieldGroup } from "@/components/ui/field";
 import InputField, { FieldTypesEnum } from "../InputField";
 import SubmitButton from "../SubmitButton";
 import { useRouter } from "next/navigation";
+import { CreateUser } from "@/lib/actions/patient.actions";
 
 function PatientForm() {
   const router = useRouter();
@@ -15,17 +16,17 @@ function PatientForm() {
   const form = useForm<z.infer<typeof appointmentSchema>>({
     resolver: zodResolver(appointmentSchema),
     defaultValues: {
-      fullName: "",
+      name: "",
       email: "",
       phone: "",
     },
     mode: "onChange",
   });
 
-  function onSubmit(userData: z.infer<typeof appointmentSchema>) {
+  async function onSubmit(userData: z.infer<typeof appointmentSchema>) {
     try {
-      // const user = createUser(userData);
-      // if (user) router.push(`patients/${user.id}/register`);
+      const user = await CreateUser(userData);
+      if (user) router.push(`patients/${user.$id}/register`);
     } catch (error) {
       console.error(error);
     }
@@ -51,7 +52,7 @@ function PatientForm() {
           fieldType={FieldTypesEnum.INPUT}
           formControl={form.control}
           label="Full Name"
-          name="fullName"
+          name="name"
           placeholder="Enter your Full Name"
           iconSrc="/assets/icons/user.svg"
           iconAlt="User"

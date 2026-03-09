@@ -1,8 +1,8 @@
 import * as sdk from 'node-appwrite';
 
 export const {
-    NEXT_PUBLIC_APPWRITE_PROJECT_ID,
-    NEXT_PUBLIC_APPWRITE_ENDPOINT,
+    NEXT_PUBLIC_APPWRITE_PROJECT_ID: PROJECT_ID,
+    NEXT_PUBLIC_APPWRITE_ENDPOINT: ENDPOINT,
     API_SECRET,
     DATABASE_ID,
     PATIENT_COLLECTION_ID,
@@ -13,8 +13,8 @@ export const {
 export const client = new sdk.Client();
 
 client
-    .setEndpoint(NEXT_PUBLIC_APPWRITE_ENDPOINT!)
-    .setProject(NEXT_PUBLIC_APPWRITE_PROJECT_ID!)
+    .setEndpoint(ENDPOINT!)
+    .setProject(PROJECT_ID!)
     .setKey(API_SECRET!);
 
 // Exporting instances of the services for use in other files

@@ -1,5 +1,5 @@
 "use client";
-import { AppointmentSchema, PatientRegisterSchema } from "@/lib/schemas";
+import { PatientRegisterSchema } from "@/lib/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import z from "zod";
@@ -61,7 +61,7 @@ function RegisterForm({ user }: { user: User }) {
       console.log("This is the patient Data: ", patientData);
       // @ts-ignore
       const patient = await registerPatient(patientData, formData);
-      if (patient) router.push(`patients/${user.$id}/new-appointment`);
+      if (patient) router.push(`/patients/${user.$id}/new-appointment`);
     } catch (error) {
       console.error(error);
     }

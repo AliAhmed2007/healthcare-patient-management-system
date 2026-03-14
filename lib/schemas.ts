@@ -1,6 +1,6 @@
 import * as z from "zod"
 
-export const AppointmentSchema = z.object({
+export const UserSchema = z.object({
   name: z
     .string()
     .min(2, "Name must be at least 2 characters.")

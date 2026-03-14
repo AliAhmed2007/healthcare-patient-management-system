@@ -1,5 +1,5 @@
 "use client";
-import { AppointmentSchema } from "@/lib/schemas";
+import { UserSchema } from "@/lib/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import z from "zod";
@@ -13,8 +13,8 @@ import { CreateUser } from "@/lib/actions/patient.actions";
 function PatientForm() {
   const router = useRouter();
 
-  const form = useForm<z.infer<typeof AppointmentSchema>>({
-    resolver: zodResolver(AppointmentSchema),
+  const form = useForm<z.infer<typeof UserSchema>>({
+    resolver: zodResolver(UserSchema),
     defaultValues: {
       name: "",
       email: "",
@@ -23,9 +23,10 @@ function PatientForm() {
     mode: "onChange",
   });
 
-  async function onSubmit(userData: z.infer<typeof AppointmentSchema>) {
+  async function onSubmit(userData: z.infer<typeof UserSchema>) {
     try {
       const user = await CreateUser(userData);
+      console.log(user);
       if (user) router.push(`patients/${user.$id}/register`);
     } catch (error) {
       console.error(error);

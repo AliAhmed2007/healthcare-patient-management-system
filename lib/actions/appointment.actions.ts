@@ -1,7 +1,7 @@
 "use server"
 import { ID, Query } from "node-appwrite"
-import { DATABASE_ID, databases, APPOINMENTS_COLLECTION_ID, PATIENT_COLLECTION_ID } from "../appwrite.config"
-import { parseStringify } from "../utils"
+import { DATABASE_ID, databases, APPOINMENTS_COLLECTION_ID, PATIENT_COLLECTION_ID, messaging } from "../appwrite.config"
+import { formatDateTime, parseStringify } from "../utils"
 import { Appointment } from "@/types/appwrite.types"
 import { revalidatePath } from "next/cache"
 
@@ -62,7 +62,7 @@ export async function getRecentAppointments() {
             appointments.documents.map(async (appointment) => {
                 const patientProfile = await databases.getDocument(
                     DATABASE_ID!,
-                    PATIENT_COLLECTION_ID!, 
+                    PATIENT_COLLECTION_ID!,
                     appointment.patient
                 );
 
@@ -78,7 +78,7 @@ export async function getRecentAppointments() {
             ...counts,
             documents: documentsWithPatients // <-- Pass the newly merged data here
         }
-        
+
         return parseStringify(data)
     } catch (error) {
         console.error(error)
@@ -97,11 +97,31 @@ export async function updateAppointment({ userId, appointmentId, appointment, ty
             throw new Error("Appointment Not Found");
         }
 
-        // TODO: SMS Notification
+        const smsMessage = `
+        Hi, It's CarePulse.
+        ${type === "schedule"
+                ? `Your appointment has been scheduled for ${formatDateTime(appointment.schedule).dateTime} with Dr. ${appointment.primaryPhysician}`
+                : `We regret to inform you that your appointment has been cancelled. For the following reason: ${appointment.cancellationReason}`
+            }`
 
+        await sendSMSNotification(userId, smsMessage)
         revalidatePath("/admin")
         return parseStringify(updatedAppointment)
 
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+export async function sendSMSNotification(userId: string, content: string) {
+    try {
+        const message = await messaging.createSMS(
+            ID.unique(),
+            content,
+            [],
+            [userId]
+        )
+        return parseStringify(message)
     } catch (error) {
         console.error(error)
     }

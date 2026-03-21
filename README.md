@@ -1,36 +1,85 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 🏥 CarePulse - Healthcare Management System
 
-## Getting Started
+CarePulse is a production-grade patient management system designed to streamline healthcare registration, appointment scheduling, and administrative workflows. Built with a focus on user experience and security, it provides a seamless interface for both patients and hospital administrators.
 
-First, run the development server:
+---
 
+## ✨ Key Features
+
+* **Patient Onboarding**: Advanced multi-step registration with complex form handling (Zod & React Hook Form).
+* **Appointment Scheduling**: Real-time appointment requests with specific doctor selection.
+* **Admin Dashboard**: A comprehensive management panel to confirm, schedule, or cancel appointments.
+* **SMS Notifications**: Automated status updates sent directly to patients via Twilio.
+* **Administrative Security**: Secure Passkey/OTP verification for sensitive admin access.
+* **File Management**: Secure storage and handling of identification documents using Appwrite Storage.
+* **Responsive Design**: Fully optimized for mobile, tablet, and desktop using Tailwind CSS and Shadcn/UI.
+
+---
+
+## 🛠️ Tech Stack
+
+| Category | Technology |
+| :--- | :--- |
+| **Framework** | [Next.js 14 (App Router)](https://nextjs.org/) |
+| **Backend/Auth/DB** | [Appwrite](https://appwrite.io/) |
+| **Messaging** | [Twilio](https://www.twilio.com/) |
+| **Styling** | [Tailwind CSS](https://tailwindcss.com/) & [Shadcn/UI](https://ui.shadcn.com/) |
+| **Forms** | [React Hook Form](https://react-hook-form.com/) & [Zod](https://zod.dev/) |
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+* Node.js 18.x or later
+* An [Appwrite](https://appwrite.io/) account (Cloud or Self-hosted)
+* A [Twilio](https://www.twilio.com/) account for SMS
+
+### Installation
+
+1. **Clone the repository**
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/AliAhmed2007/healthcare-patient-management-system.git
+cd carepulse
+```
+2. **Environment Setup**
+Create a .env.local file in the root directory and add your credentials:
+```.env.local
+# Appwrite
+NEXT_PUBLIC_ENDPOINT=[https://cloud.appwrite.io/v1](https://cloud.appwrite.io/v1)
+NEXT_PUBLIC_PROJECT_ID=
+NEXT_PUBLIC_DATABASE_ID=
+NEXT_PUBLIC_PATIENT_COLLECTION_ID=
+NEXT_PUBLIC_APPOINTMENT_COLLECTION_ID=
+NEXT_PUBLIC_BUCKET_ID=
+APPWRITE_API_KEY=
+
+# Twilio
+TWILIO_ACCOUNT_SID=
+TWILIO_AUTH_TOKEN=
+TWILIO_PHONE_NUMBER=
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 📖 Project Structure
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+    /app: Next.js App Router pages and layouts.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+    /components: Reusable UI components (Forms, Tables, Modals).
 
-## Learn More
+    /lib: Server actions, Appwrite configuration, and utility functions.
 
-To learn more about Next.js, take a look at the following resources:
+    /types: TypeScript definitions for project-wide type safety.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+    /public: Static assets, icons, and images.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## 🔒 Security Features
 
-## Deploy on Vercel
+    Passkey Verification: Prevents unauthorized access to the Admin Dashboard.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+    Data Validation: Strict schema validation on both client and server sides using Zod.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+    Document Privacy: Identification documents are stored in private Appwrite buckets with restricted access.
+
+## 📜 Credits
+
+This project was built as part of a deep-dive into modern full-stack development. Special thanks to JavaScript Mastery for the comprehensive architectural guidance.

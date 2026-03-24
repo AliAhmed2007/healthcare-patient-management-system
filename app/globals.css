@@ -280,6 +280,7 @@
     @apply flex w-full items-center justify-between space-x-2 p-4;
   }
 
+  /* ===== SHADCN OVERRIDES */
   .shad-primary-btn {
     @apply !bg-green-500 !text-white;
   }
@@ -297,19 +298,23 @@
   }
 
   .shad-input {
-    @apply !bg-dark-400 placeholder: !text-dark-600 !border-dark-500 !h-11 focus-visible: !ring-0 focus-visible: !ring-offset-0;
+    /* FIX: Removed space after placeholder: and focus-visible: */
+    @apply !bg-dark-400 placeholder:!text-dark-600 !border-dark-500 !h-11 focus-visible:!ring-0 focus-visible:!ring-offset-0;
   }
 
   .shad-input-icon {
-    @apply !bg-dark-400 placeholder: !text-dark-600 !border-dark-500 !h-11 focus-visible: !ring-0 focus-visible: !ring-offset-0;
+    /* FIX: Removed space after placeholder: and focus-visible: */
+    @apply !bg-dark-400 placeholder:!text-dark-600 !border-dark-500 !h-11 focus-visible:!ring-0 focus-visible:!ring-offset-0;
   }
 
   .shad-textArea {
-    @apply !bg-dark-400 placeholder: !text-dark-600 !border-dark-500 focus-visible: !ring-0 focus-visible: !ring-offset-0;
+    /* FIX: Removed space after placeholder: and focus-visible: */
+    @apply !bg-dark-400 placeholder:!text-dark-600 !border-dark-500 focus-visible:!ring-0 focus-visible:!ring-offset-0;
   }
 
   .shad-combobox-item {
-    @apply data-[disabled=true]: !pointer-events-none data-[disabled=true]: !opacity-50;
+    /* FIX: Removed space after data-[disabled=true]: */
+    @apply data-[disabled=true]:!pointer-events-none data-[disabled=true]:!opacity-50;
   }
 
   .shad-combobox-trigger {
@@ -317,7 +322,8 @@
   }
 
   .shad-select-trigger {
-    @apply !bg-dark-400 placeholder: !text-dark-600 !border-dark-500 !h-11 focus: !ring-0 focus: !ring-offset-0;
+    /* FIX: Removed space after placeholder: and focus: */
+    @apply !bg-dark-400 placeholder:!text-dark-600 !border-dark-500 !h-11 focus:!ring-0 focus:!ring-offset-0;
   }
 
   .shad-select-content {
@@ -329,7 +335,8 @@
   }
 
   .shad-dialog button {
-    @apply focus: !ring-0 focus: !ring-offset-0 focus-visible: !border-none focus-visible: !outline-none focus-visible: !ring-transparent focus-visible: !ring-offset-0;
+    /* FIX: Removed space after focus: and focus-visible: */
+    @apply focus:!ring-0 focus:!ring-offset-0 focus-visible:!border-none focus-visible:!outline-none focus-visible:!ring-transparent focus-visible:!ring-offset-0;
   }
 
   .shad-error {
@@ -341,7 +348,8 @@
   }
 
   .shad-table-row-header {
-    @apply !border-b !border-dark-400 !text-light-200 hover: !bg-transparent;
+    /* FIX: Removed space after hover: */
+    @apply !border-b !border-dark-400 !text-light-200 hover:!bg-transparent;
   }
 
   .shad-table-row {
@@ -361,15 +369,18 @@
   }
 
   .shad-sheet-content button {
-    @apply !top-2 focus: !ring-0 focus: !ring-offset-0 focus-visible: !border-none focus-visible: !outline-none focus-visible: !ring-transparent focus-visible: !ring-offset-0;
+    /* FIX: Removed space after focus: and focus-visible: */
+    @apply !top-2 focus:!ring-0 focus:!ring-offset-0 focus-visible:!border-none focus-visible:!outline-none focus-visible:!ring-transparent focus-visible:!ring-offset-0;
   }
 
   .input-phone {
-    @apply !h-11 !rounded-md !px-3 !text-sm !border !bg-dark-400 placeholder: !text-dark-600 !border-dark-500;
+    /* FIX: Removed space after placeholder: */
+    @apply !h-11 !rounded-md !px-3 !text-sm !border !bg-dark-400 placeholder:!text-dark-600 !border-dark-500;
   }
 
   .date-picker {
-    @apply !overflow-hidden !border-transparent !w-full placeholder: !text-dark-600 !h-11 !text-14-medium !rounded-md !px-3 !outline-none;
+    /* FIX: Removed space after placeholder: */
+    @apply !overflow-hidden !border-transparent !w-full placeholder:!text-dark-600 !h-11 !text-14-medium !rounded-md !px-3 !outline-none;
   }
 }
 

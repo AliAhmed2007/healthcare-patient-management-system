@@ -21,7 +21,7 @@ export default async function NewAppointment({ params }: PageProps) {
             width={1000}
             alt="patient"
             className="mb-12 h-10 w-fit"
-            priorit
+            priority
           />
           <AppointmentForm 
             type="create"

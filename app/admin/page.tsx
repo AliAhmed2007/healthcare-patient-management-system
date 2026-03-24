@@ -7,7 +7,6 @@ import Link from "next/link";
 
 async function Admin() {
   const appointments = await getRecentAppointments();
-  console.log(appointments);
   return (
     <div className="mx-auto flex max-w-7xl flex-col space-y-14">
       <header className="admin-header">

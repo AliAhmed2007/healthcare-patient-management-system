@@ -1,14 +1,16 @@
 import AppointmentForm from "@/components/forms/AppointmentForm";
-import PatientForm from "@/components/forms/PatientForm";
-import { Button } from "@/components/ui/button";
 import { getPatient } from "@/lib/actions/patient.actions";
 import Image from "next/image";
-import Link from "next/link";
+type PageProps = {
+  params: Promise<{ userId: string }>;
+};
 
-export default async function NewAppointment({
-  params: { userId },
-}: SearchParamProps) {
-  const patient = await getPatient(userId)
+export default async function NewAppointment({ params }: PageProps) {
+  const resolvedParams = await params;
+  const userId = resolvedParams.userId;
+  
+  const patient = await getPatient(userId);
+  
   return (
     <div className="flex h-screen max-h-screen">
       <section className="remove-scrollbar container my-auto">
@@ -19,6 +21,7 @@ export default async function NewAppointment({
             width={1000}
             alt="patient"
             className="mb-12 h-10 w-fit"
+            priorit
           />
           <AppointmentForm 
             type="create"

@@ -1,16 +1,25 @@
 import Image from "next/image";
 import Link from "next/link";
-
 import { Button } from "@/components/ui/button";
 import { Doctors } from "@/constants";
 import { getAppointment } from "@/lib/actions/appointment.actions";
 import { formatDateTime } from "@/lib/utils";
 
+type SuccessPageProps = {
+  params: Promise<{ userId: string }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+};
+
 const RequestSuccess = async ({
   searchParams,
-  params: { userId },
-}: SearchParamProps) => {
-  const appointmentId = (searchParams?.appointmentId as string) || "";
+  params,
+}: SuccessPageProps) => {
+  const resolvedParams = await params;
+  const resolvedSearchParams = await searchParams;
+
+  const userId = resolvedParams.userId;
+  const appointmentId = (resolvedSearchParams?.appointmentId as string) || "";
+  
   const appointment = await getAppointment(appointmentId);
 
   const doctor = Doctors.find(
@@ -27,6 +36,7 @@ const RequestSuccess = async ({
             width={1000}
             alt="logo"
             className="h-10 w-fit"
+            priority
           />
         </Link>
 
@@ -37,6 +47,7 @@ const RequestSuccess = async ({
             width={280}
             unoptimized
             alt="success"
+            priority
           />
           <h2 className="header mb-6 max-w-[600px] text-center">
             Your <span className="text-green-500">appointment request</span> has
@@ -75,7 +86,6 @@ const RequestSuccess = async ({
         </Button>
 
         <p className="copyright">
-          {" "}
           &copy; {new Date().getFullYear()} CarePulse
         </p>
       </div>

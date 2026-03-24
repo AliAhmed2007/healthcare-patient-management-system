@@ -40,7 +40,6 @@ function PassKeyModal() {
         setOpen(false);
         router.push("/admin");
       } else {
-        console.log(searchParams.get("admin"), searchParams.get("admin") === "true");
         searchParams.get("admin") === "true" ? setOpen(true) : null;
       }
     }

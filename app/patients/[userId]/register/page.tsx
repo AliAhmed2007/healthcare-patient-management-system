@@ -1,12 +1,18 @@
 import RegisterForm from "@/components/forms/RegisterForm";
 import { getUser } from "@/lib/actions/patient.actions";
 import Image from "next/image";
-import Link from "next/link";
 
-export default async function Register({
-  params: { userId },
-}: SearchParamProps) {
+type PageProps = {
+  params: Promise<{ userId: string }>;
+};
+
+export default async function Register({ params }: PageProps) {
+
+  const resolvedParams = await params;
+  const userId = resolvedParams.userId;
+
   const user = await getUser(userId);
+  
   return (
     <div className="flex h-screen max-h-screen">
       <section className="remove-scrollbar container">
@@ -17,6 +23,7 @@ export default async function Register({
             width={1000}
             alt="patient"
             className="mb-12 h-10 w-fit"
+            priority
           />
           <RegisterForm user={user} />
           <p className="py-12 copyright">

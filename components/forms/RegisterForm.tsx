@@ -58,7 +58,6 @@ function RegisterForm({ user }: { user: User }) {
         birthDate: new Date(values.birthDate),
         identificationDocument: undefined, // Don't send the array/object here
       };
-      console.log("This is the patient Data: ", patientData);
       // @ts-ignore
       const patient = await registerPatient(patientData, formData);
       if (patient) router.push(`/patients/${user.$id}/new-appointment`);

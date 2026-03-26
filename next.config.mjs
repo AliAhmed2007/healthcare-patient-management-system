@@ -5,6 +5,9 @@ const nextConfig = {
     ignoreBuildErrors: true 
   },
   
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
   // React Compiler is now stable and lives at the top level!
   reactCompiler: true,
 

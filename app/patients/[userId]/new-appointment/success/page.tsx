@@ -29,7 +29,7 @@ const RequestSuccess = async ({
   return (
     <div className=" flex h-screen max-h-screen px-[5%]">
       <div className="success-img">
-        <Link href="/">
+        <Link href="/" transitionTypes={['slide-out']}>
           <Image
             src="/assets/icons/logo-full.svg"
             height={1000}
@@ -80,7 +80,7 @@ const RequestSuccess = async ({
         </section>
 
         <Button variant="outline" className="shad-primary-btn" asChild>
-          <Link href={`/patients/${userId}/new-appointment`}>
+          <Link href={`/patients/${userId}/new-appointment`} transitionTypes={['slide']}>
             New Appointment
           </Link>
         </Button>

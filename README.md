@@ -20,7 +20,7 @@ CarePulse is a production-grade patient management system designed to streamline
 
 | Category | Technology |
 | :--- | :--- |
-| **Framework** | [Next.js 14 (App Router)](https://nextjs.org/) |
+| **Framework** | [Next.js 16 (App Router)](https://nextjs.org/) |
 | **Backend/Auth/DB** | [Appwrite](https://appwrite.io/) |
 | **Messaging** | [Twilio](https://www.twilio.com/) |
 | **Styling** | [Tailwind CSS](https://tailwindcss.com/) & [Shadcn/UI](https://ui.shadcn.com/) |
